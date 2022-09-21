@@ -59,4 +59,3 @@ class App extends Component {
 }
 
 export default App;
-// Apagar essa linha depois
