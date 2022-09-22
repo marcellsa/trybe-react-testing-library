@@ -1,7 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../pages/Pokedex';
 
@@ -32,7 +31,8 @@ const pokemonsList = [
       '{location: "Kanto Viridian Forest", map: "https://c…}',
       '{location: "Kanto Power Plant", map: "https://cdn2.…}',
     ],
-    summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+    summary: `This intelligent Pokémon roasts hard berries with electricity to make 
+    them tender enough to eat.`,
   },
   {
     id: 4,
@@ -42,7 +42,8 @@ const pokemonsList = [
     image: 'https://cdn2.bulbagarden.net/upload/0/0a/Spr_5b_004.png',
     moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Charmander_(Pok%C3%A9mon)',
     foundAt: '[{…}, {…}, {…}, {…}]',
-    summary: 'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
+    summary: `The flame on its tail shows the strength of its life force. If it is weak, 
+    the flame also burns weakly.`,
   },
   {
     id: 10,
@@ -52,7 +53,8 @@ const pokemonsList = [
     image: 'https://cdn2.bulbagarden.net/upload/8/83/Spr_5b_010.png',
     moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Caterpie_(Pok%C3%A9mon)',
     foundAt: '[{…}, {…}, {…}, {…}]',
-    summary: 'For protection, it releases a horrible stench from the antennae on its head to drive away enemies.',
+    summary: `For protection, it releases a horrible stench from the antennae 
+    on its head to drive away enemies.`,
   },
   {
     id: 23,
@@ -62,7 +64,8 @@ const pokemonsList = [
     image: 'https://cdn2.bulbagarden.net/upload/1/18/Spr_5b_023.png',
     moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Ekans_(Pok%C3%A9mon)',
     foundAt: '[{…}]',
-    summary: 'It can freely detach its jaw to swallow large prey whole. It can become too heavy to move, however.',
+    summary: `It can freely detach its jaw to swallow large prey whole. 
+    It can become too heavy to move, however.`,
   },
   {
     id: 65,
@@ -72,7 +75,8 @@ const pokemonsList = [
     image: 'https://cdn2.bulbagarden.net/upload/8/88/Spr_5b_065_m.png',
     moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Alakazam_(Pok%C3%A9mon)',
     foundAt: '[{…}]',
-    summary: 'Closing both its eyes heightens all its other senses. This enables it to use its abilities to their extremes.',
+    summary: `Closing both its eyes heightens all its other senses. 
+    This enables it to use its abilities to their extremes.`,
   },
   {
     id: 151,
@@ -82,7 +86,8 @@ const pokemonsList = [
     image: 'https://cdn2.bulbagarden.net/upload/4/43/Spr_5b_151.png',
     moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Mew_(Pok%C3%A9mon)',
     foundAt: '[{…}]',
-    summary: 'Apparently, it appears only to those people who are pure of heart and have a strong desire to see it.',
+    summary: `Apparently, it appears only to those people who are pure of heart 
+    and have a strong desire to see it.`,
   },
   {
     id: 78,
@@ -92,7 +97,8 @@ const pokemonsList = [
     image: 'https://cdn2.bulbagarden.net/upload/5/58/Spr_5b_078.png',
     moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Rapidash_(Pok%C3%A9mon)',
     foundAt: '[{…}, {…}]',
-    summary: 'At full gallop, its four hooves barely touch the ground because it moves so incredibly fast.',
+    summary: `At full gallop, its four hooves barely touch the ground 
+    because it moves so incredibly fast.`,
   },
   {
     id: 143,
@@ -102,7 +108,8 @@ const pokemonsList = [
     image: 'https://cdn2.bulbagarden.net/upload/4/40/Spr_5b_143.png',
     moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Snorlax_(Pok%C3%A9mon)',
     foundAt: '[{…}]',
-    summary: 'What sounds like its cry may actually be its snores or the rumblings of its hungry belly.',
+    summary: `What sounds like its cry may actually be its snores 
+    or the rumblings of its hungry belly.`,
   },
   {
     id: 148,
@@ -112,7 +119,8 @@ const pokemonsList = [
     image: 'https://cdn2.bulbagarden.net/upload/2/2c/Spr_5b_148.png',
     moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Dragonair_(Pok%C3%A9mon)',
     foundAt: '[{…}, {…}]',
-    summary: 'They say that if it emits an aura from its whole body, the weather will begin to change instantly.',
+    summary: `They say that if it emits an aura from its whole body, 
+    the weather will begin to change instantly.`,
   },
 ];
 
