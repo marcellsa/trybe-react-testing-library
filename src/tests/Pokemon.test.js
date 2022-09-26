@@ -85,8 +85,5 @@ describe('Ao acesar o componente Pokemon', () => {
 
     // Aferir
     expect(history.location.pathname).toBe(PIKUACHU_URL);
-    // const homeTitle = screen
-    //   .getByRole('heading', { name: 'Encountered pokémons', level: 2 });
-    // expect(homeTitle).toBeInTheDocument();
   });
 });
