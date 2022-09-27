@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
@@ -42,8 +42,8 @@ describe('Ao acesar o componente Pokemon', () => {
     expect(pokemonWeight.textContent).toBe(CATERPIE_WEIGHT);
   });
 
-  test(`Se a imagem do pokémon deve ser exibida. Ela deve conter um atributo 
-  src com a URL da imagem e um atributo alt com o texto <name> sprite, 
+  test(`Se a imagem do pokémon deve ser exibida. Ela deve conter um atributo
+  src com a URL da imagem e um atributo alt com o texto <name> sprite,
   onde <name> é o nome do pokémon`, () => {
     // Acessar
     const CATERPIE_SRC = 'https://cdn2.bulbagarden.net/upload/8/83/Spr_5b_010.png';
@@ -59,7 +59,7 @@ describe('Ao acesar o componente Pokemon', () => {
     expect(caterpieAlt.src).toBe(CATERPIE_SRC);
   });
 
-  test(`Se ao clicar no link de navegação do pokémon, é feito o redirecionamento da 
+  test(`Se ao clicar no link de navegação do pokémon, é feito o redirecionamento da
   aplicação para a página de detalhes de pokémon`, () => {
     // Acessar
     renderWithRouter(<App />);
@@ -73,7 +73,7 @@ describe('Ao acesar o componente Pokemon', () => {
     expect(detailsTitle).toBeInTheDocument();
   });
 
-  test(`Se a URL exibida no navegador muda para /pokemon/<id>, onde <id> 
+  test(`Se a URL exibida no navegador muda para /pokemon/<id>, onde <id>
   é o id do pokémon cujos detalhes se deseja ver`, () => {
     // Acessar
     const PIKUACHU_URL = '/pokemons/25';
@@ -85,5 +85,49 @@ describe('Ao acesar o componente Pokemon', () => {
 
     // Aferir
     expect(history.location.pathname).toBe(PIKUACHU_URL);
+  });
+
+  test(`Se o ícone é uma imagem com o atributo src
+  contendo o caminho /star-icon.svg`, () => {
+    // Acessar
+    renderWithRouter(<App />);
+    const buttonMoreDetails = screen.getByRole('link', { name: /more details/i });
+
+    // AGIR
+    userEvent.click(buttonMoreDetails);
+
+    const buttonCheckbox = screen.getByRole('checkbox', { name: /pokémon favoritado/i });
+    userEvent.click(buttonCheckbox);
+
+    const favoritePokemon = screen.getByRole('img', { name: /marked as favorite/i });
+
+    // Aferir
+    expect(favoritePokemon).toHaveAttribute('src', '/star-icon.svg');
+  });
+
+  test(`Se a imagem tem o atributo alt igual a <pokemon> is marked as favorite, 
+  onde <pokemon> é o nome do pokémon exibido`, () => {
+    // Acessar
+    const { history } = renderWithRouter(<App />);
+
+    act(() => {
+      history.push('/pokemons/148');
+    });
+
+    // AGIR
+    const buttonCheckbox = screen.getByRole('checkbox', {
+      name: /pokémon favoritado\?/i,
+    });
+    userEvent.click(buttonCheckbox);
+    // console.log(buttonCheckbox);
+
+    // const markedAsFavorite = await screen.findByAltText('Pikachu is marked as favorite');
+    const markedAsFavorite = screen.getByAltText(/Dragonair is marked as favorite/i);
+    // console.log(markedAsFavorite);
+
+    // Aferir
+    // expect(markedAsFavorite).toHaveAttribute('src', '/star-icon.svg');
+    // expect(markedAsFavorite.src).toContain('/star-icon.svg');
+    expect(markedAsFavorite.alt).toContain('Dragonair is marked as favorite');
   });
 });
